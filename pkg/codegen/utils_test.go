@@ -425,6 +425,9 @@ func TestSwaggerUriToFiberUri(t *testing.T) {
 	assert.Equal(t, "/path/:arg/foo", SwaggerUriToFiberUri("/path/{;arg*}/foo"))
 	assert.Equal(t, "/path/:arg/foo", SwaggerUriToFiberUri("/path/{?arg}/foo"))
 	assert.Equal(t, "/path/:arg/foo", SwaggerUriToFiberUri("/path/{?arg*}/foo"))
+
+	// Make sure literal colons are escaped
+	assert.Equal(t, "/path/:arg\\\\:foo", SwaggerUriToFiberUri("/path/{arg}:foo"))
 }
 
 func TestSwaggerUriToChiUri(t *testing.T) {

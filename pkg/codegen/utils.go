@@ -565,6 +565,7 @@ func SwaggerUriToEchoUri(uri string) string {
 //	{?param}
 //	{?param*}
 func SwaggerUriToFiberUri(uri string) string {
+	uri = strings.ReplaceAll(uri, ":", "\\\\:")
 	return pathParamRE.ReplaceAllString(uri, ":$1")
 }
 
